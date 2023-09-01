@@ -2,26 +2,27 @@
 const width = 1920
 const height = 1080
 
-// append the svg object to the body of the page
-const svg = d3.select("#bubblecloud")
+export function clear() {
+  d3.select("#bubblecloud").selectAll("svg").remove();
+  d3.select("#bubblecloud").selectAll("div").remove();
+}
+
+export function render(data, domainScheme = [], rangeScheme = d3.schemeSet1) {
+  // append the svg object to the body of the page
+  const svg = d3.select("#bubblecloud")
   .append("svg")
     .attr("width", width)
     .attr("height", height)
     .style("border", "1px solid black");
 
-// Read data
-// d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/11_SevCatOneNumNestedOneObsPerGroup.csv").then( function(data) {
-
-export default function (data, rangeScheme = d3.schemeSet1) {
-  
   // Color palette for regions?
   const color = d3.scaleOrdinal()
-    .domain(["Selected", "Requested", "Internal", "Roadmap"])
+    .domain(domainScheme)
     .range(rangeScheme); // ['#e41a1c', '#377eb8', '#4daf4a', '#984ea3', '#ff7f00', '#ffff33', '#a65628', '#f781bf', '#999999']
 
   const size = d3.scaleLinear()
     .domain([0, 100])
-    .range([10,350])  // circle will be between 7 and 255 px wide
+    .range([7,200])  // circle will be between 7 and 255 px wide
 
   // create a tooltip
   const Tooltip = d3.select("#bubblecloud")
@@ -81,13 +82,14 @@ export default function (data, rangeScheme = d3.schemeSet1) {
 
   var textNode = foo.append("text")
     .attr("x", x)
-    .attr("y", y)
+    .attr("y", d => size(d.value / 10))
     .text(function(d){return d.key})
     .attr("text-anchor", "middle")
-    .attr("font-size", d => size(d.value / 12))
+    .attr("font-size", d => size(d.value / 8))
     .attr("font-family", "sans-serif")
     .attr("font-weight", 700)
     .attr("fill", "#fff")
+    .style("margin-top", "10px");
   
   // Features of the forces applied to the nodes:
   const simulation = d3.forceSimulation()
