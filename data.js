@@ -24,6 +24,8 @@ const roadmap = {
 };
 
 const requested = {
+  "Dynamic Components": 90,
+  "Workspace API": 80,
   "PDF Export": 44,
   "List View Buttons": 42,
   "Overrides": 20,
