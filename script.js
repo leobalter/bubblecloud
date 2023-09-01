@@ -52,7 +52,7 @@ export function render(data, domainScheme = [], rangeScheme = d3.schemeSet1) {
 
   var textNode = foo.append("text")
     .attr("x", x)
-    .attr("y", d => size(d.value / 10))
+    .attr("y", y)
     .text(function(d){return d.key})
     .attr("text-anchor", "middle")
     .attr("font-size", d => size(d.value / 8))
@@ -77,7 +77,7 @@ export function render(data, domainScheme = [], rangeScheme = d3.schemeSet1) {
             .attr("cy", d => d.y)
         textNode
             .attr("x", d => d.x)
-            .attr("y", d => d.y)
+            .attr("y", d => d.y + 4)
 
       });
 
