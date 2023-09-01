@@ -137,3 +137,29 @@ document.querySelector("#stillAura").addEventListener("click", function() {
 document.querySelector("#clear").addEventListener("click", function() {
   clear();
 });
+
+function shuffle(array) {
+  let currentIndex = array.length,  randomIndex;
+
+  // While there remain elements to shuffle.
+  while (currentIndex > 0) {
+
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+
+  return array;
+}
+
+document.querySelector("#eeaao").addEventListener("click", function() {
+  clear();
+  const data = [];
+  fillUp(data, ["Requested", "Roadmap", "Internal", "Selected"], 1000);
+  shuffle(data);
+  Bubblecloud(data, Object.keys(regions), Object.values(regions));
+});
