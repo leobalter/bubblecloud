@@ -39,7 +39,7 @@ export function render(data, domainScheme = [], rangeScheme = d3.schemeSet1) {
     .attr("transform", "translate(0, 0)");
 
   let x = width / 2;
-    let y = height / 2;
+  let y = height / 2;
 
   var node = foo.append("circle")
       .attr("r", d => size(d.value))
@@ -77,8 +77,7 @@ export function render(data, domainScheme = [], rangeScheme = d3.schemeSet1) {
             .attr("cy", d => d.y)
         textNode
             .attr("x", d => d.x)
-            .attr("y", d => d.y + 4)
-
+            .attr("y", d => d.y + (Math.floor(textNode.attr("font-size") / 4)))
       });
 
   // What happens when a circle is dragged?
