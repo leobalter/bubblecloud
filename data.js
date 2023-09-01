@@ -48,7 +48,6 @@ const stillAura = {
   "Experience": 16,
   "Desktop": 12,
   "Complexity": 8,
-  // "Other": 42, 
 };
 
 function fillUp(data, selections = [], max = 100) {

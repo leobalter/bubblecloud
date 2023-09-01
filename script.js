@@ -47,8 +47,8 @@ export function render(data, domainScheme = [], rangeScheme = d3.schemeSet1) {
       .attr("cy", y)
       .style("fill", d => color(d.region))
       .style("fill-opacity", 0.8)
-      .attr("stroke", "black")
-      .style("stroke-width", 1)
+      // .attr("stroke", "black")
+      // .style("stroke-width", 1)
 
   var textNode = foo.append("text")
     .attr("x", x)
