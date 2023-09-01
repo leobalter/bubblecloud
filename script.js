@@ -1,6 +1,6 @@
 // set the dimensions and margins of the graph
-const width = 1920
-const height = 1080
+const width = 1920;
+const height = 1080;
 
 export function clear() {
   d3.select("#bubblecloud").selectAll("svg").remove();
@@ -24,41 +24,11 @@ export function render(data, domainScheme = [], rangeScheme = d3.schemeSet1) {
     .domain([0, 100])
     .range([7,200])  // circle will be between 7 and 255 px wide
 
-  // create a tooltip
-  const Tooltip = d3.select("#bubblecloud")
-    .append("div")
-    .style("opacity", 0)
-    .attr("class", "tooltip")
-    .style("background-color", "white")
-    .style("border", "solid")
-    .style("border-width", "2px")
-    .style("border-radius", "5px")
-    .style("padding", "5px")
-
-  // Three function that change the tooltip when user hover / move / leave a cell
-  const mouseover = function(event, d) {
-    Tooltip
-      .style("opacity", 1)
-  }
-  const mousemove = function(event, d) {
-    Tooltip
-      .html('<u>' + d.key + '</u>' + "<br>" + d.value + "%")
-      .style("left", (event.x/2+20) + "px")
-      .style("top", (event.y/2-30) + "px")
-  }
-  var mouseleave = function(event, d) {
-    Tooltip
-      .style("opacity", 0)
-  }
-
   // Initialize the circle: all located at the center of the svg area
   var foo = svg
     .selectAll("circle")
     .data(data)
     .join("g")
-    // .on("mouseover", mouseover) // What to do when hovered
-    // .on("mousemove", mousemove)
-    // .on("mouseleave", mouseleave)
     .call(d3.drag() // call specific function when circle is dragged
       .on("start", dragstarted)
       .on("drag", dragged)
